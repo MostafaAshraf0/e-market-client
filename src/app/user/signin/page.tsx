@@ -20,6 +20,7 @@ import axios from "axios"
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import Link from 'next/link'
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
@@ -54,8 +55,8 @@ export default function Singup(){
       const response = await axios.post("http://localhost:8080/user/login", values)
       const { token, userId } = response.data
 
-      Cookies.set('token', token, { path: '/' });
-      Cookies.set('userId', userId, { path: '/' });
+      Cookies.set('token', token, { expires: 1 , path: '/' });
+      Cookies.set('userId', userId, { expires: 1, path: '/' });
       // localStorage.setItem('token', token)
       // localStorage.setItem('userId', userId)
 
@@ -105,6 +106,11 @@ export default function Singup(){
               {loginError && (
                 <p className="text-red-500">{loginError}</p>
               )}
+              <Link href="/user/signup">
+                <p  className="text-gray-500 hover:text-gray-400 pt-2 ">
+                Don&rsquo;t Have Acount ?
+                </p>
+              </Link>
               <div className="flex justify-end">
                 <Button type="submit" disabled={isLoading}>
                   {isLoading ? "Signing In..." : "Submit"}

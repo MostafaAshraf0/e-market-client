@@ -1,3 +1,4 @@
+"use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -5,6 +6,8 @@ import { ModeToggle } from "../ModeToggle";
 import Link from "next/link";
 import LogoutButton from "../logoutButton";
 import AuthWrapper from '@/components/AuthWrapper';
+import dynamic from "next/dynamic";
+import Search from "../Search";
 
 export default function Navbar() {
   return (
@@ -40,7 +43,8 @@ export default function Navbar() {
           </ul>
         </div>
         <div>
-          <Input type="email" placeholder="Search" />
+          {/* <Input type="email" placeholder="Search" /> */}
+          <Search/>
         </div>
         <AuthWrapper
         authenticated={<LogoutButton />}

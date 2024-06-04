@@ -14,6 +14,7 @@ import axios from 'axios';
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 type Product = {
   _id: string;
@@ -36,7 +37,7 @@ export default function SingleProduct({ params }: any) {
       try {
         const { productId } = params as { productId: string };
         if (!productId) {
-          console.error('No product ID found in params');
+          console.error('No product ID found');
           return;
         }
 
@@ -51,6 +52,21 @@ export default function SingleProduct({ params }: any) {
 
     fetchProduct();
   }, [params]);
+
+  const handleDelete = async () => {
+    try {
+      const { productId } = params as { productId: string };
+      const token = Cookies.get('token');
+      await axios.delete(`http://localhost:8080/delete/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      navigation.push('/products');
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  };
 
   if (!product) {
     return <div>Loading...</div>;
@@ -84,6 +100,12 @@ export default function SingleProduct({ params }: any) {
               <Button onClick={() => navigation.push('/products')} variant="outline" className="text-red-500">
                 Go Back to Product List
               </Button>
+              <Button onClick={() => navigation.push(`/products/update/${product._id}`)} variant="outline" className="text-blue-500">
+              Update Product
+            </Button>
+              <Button onClick={handleDelete} variant="outline" className="text-blue-500">
+              Delete Product
+            </Button>
             </CardFooter>
     </Card>
     </div>

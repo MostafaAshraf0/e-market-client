@@ -71,8 +71,15 @@ export default function CreateProduct() {
         }
       );
       setCreateProductResult(response.data);
+      toast({
+        description: response.data.message || "Product has been created successfully.",
+      });
     } catch (error) {
       console.error("Error Creating Product:", error);
+      toast({
+        description: "Failed to create product.",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -167,26 +174,14 @@ export default function CreateProduct() {
               </div>
             </form>
           </Form>
-
-          <Button
-      variant="outline"
-      onClick={() => {
-        toast({
-          description: "Your message has been sent.",
-        })
-      }}
-    >
-      Show Toast
-    </Button>
-          
-          {createProductResult && (
+          {/* {createProductResult && (
             <div className=" mt-4">
               <p>
                 {createProductResult.message ||
                   "Product creation request sent. Awaiting server response."}
               </p>
             </div>
-          )}
+          )} */}
           
 
         </Card>
