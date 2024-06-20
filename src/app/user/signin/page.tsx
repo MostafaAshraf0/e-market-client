@@ -20,7 +20,9 @@ import axios from "axios"
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
-import Link from 'next/link'
+import Link from 'next/link';
+import { jwtDecode } from "jwt-decode";
+import { handleLogout } from '@/utils/logout';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
@@ -48,6 +50,13 @@ export default function Singup(){
     },
   })
 
+  const setLogoutTimeout = (expiresIn: number) => {
+    const timeout = expiresIn - Date.now();
+    setTimeout(() => {
+      handleLogout();
+    }, timeout);
+  };
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true)
     setLoginError(null)
@@ -59,6 +68,9 @@ export default function Singup(){
       Cookies.set('userId', userId, { expires: 1, path: '/' });
       // localStorage.setItem('token', token)
       // localStorage.setItem('userId', userId)
+
+      const decodedToken: { exp: number } = jwtDecode(token);
+      setLogoutTimeout(decodedToken.exp * 1000);
 
       router.push('/')
     } catch (error) {

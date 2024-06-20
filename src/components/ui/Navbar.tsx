@@ -18,25 +18,25 @@ export default function Navbar() {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
 
-        <div className="flex  gap-2">
+        <div className="flex pt-2  gap-5">
           <ul>
             <Link href="/">
-            <Button>Home</Button>
+            <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Home</h1>
             </Link>
           </ul>
           <ul>
             <Link href="/products">
-            <Button>Products</Button>
+            <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Products</h1>
             </Link>
           </ul>
           <ul>
-            <Button>Cart</Button>
+            <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Cart</h1>
           </ul>
           <ul>
           <AuthWrapper
           authenticated={
             <Link href="/products/create">
-            <Button>create product</Button>
+            <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Create Product</h1>
             </Link>
           }
           />
