@@ -15,6 +15,8 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
+import Footer from "@/components/Footer";
+import AuthWrapper from '@/components/AuthWrapper';
 
 type Product = {
   _id: string;
@@ -77,18 +79,21 @@ export default function SingleProduct({ params }: any) {
   return (
     <>
     <Navbar/>
-    <div className="flex justify-center flex-wrap p-2 gap-5">
-    <Card>
-            <CardHeader>
+    <div className="flex justify-center p-5">
               <Image
                 className="rounded-md"
                 src={imageUrl}
-                alt="Product"
-                layout="fixed"
-                width={250}
-                height={250}
+                alt={product.title}
+                layout="intrinsic"
+                width={680}
+                height={384}
                 objectFit="cover"
+                loading = 'lazy'
               />
+    </div>
+    <div className="flex justify-center flex-wrap p-2 gap-5 ">
+    <Card className="min-w-80 w-1/2">
+            <CardHeader>
               <CardTitle>{product.title}</CardTitle>
               <CardDescription>{product.description}</CardDescription>
             </CardHeader>
@@ -96,20 +101,33 @@ export default function SingleProduct({ params }: any) {
             <CardContent>
               <p>$ {product.price}</p>
             </CardContent>
-            <CardFooter>
-              <Button onClick={() => navigation.push('/products')} variant="outline" className="text-red-500">
-                Go Back to Product List
+            <CardFooter className="gap-5">
+            <Button variant="outline" className="text-red-500">
+                Add To Cart
               </Button>
+              <AuthWrapper
+              creator={product.creator}
+              authenticated={
+              <>
               <Button onClick={() => navigation.push(`/products/update/${product._id}`)} variant="outline" className="text-blue-500">
               Update Product
             </Button>
               <Button onClick={handleDelete} variant="outline" className="text-blue-500">
               Delete Product
             </Button>
+            </>
+            }
+              />
+              
             </CardFooter>
     </Card>
     </div>
-      <button onClick={() => navigation.push('/products')}>Go Back to Product List</button>
+            <div className="p-2">
+              <Button onClick={() => navigation.push('/products')} variant="outline">
+                Go Back to Product List
+              </Button>
+            </div>
+    <Footer/>
     </>
   );
 }

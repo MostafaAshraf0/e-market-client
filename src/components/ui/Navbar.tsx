@@ -8,52 +8,146 @@ import LogoutButton from "../logoutButton";
 import AuthWrapper from '@/components/AuthWrapper';
 import dynamic from "next/dynamic";
 import Search from "../Search";
+import { BsCart3 } from "react-icons/bs";
+import Image from 'next/image';
+import textLogo from '../../../public/images/text-logo-b&R.png';
+import textLogodark from '../../../public/images/text-logo-red.png';
+import { motion } from "framer-motion"
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+import { CiMenuBurger } from "react-icons/ci";
 
 export default function Navbar() {
   return (
-    <>
-      <nav className="flex justify-between p-2 gap-3">
-        <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+    <nav className="flex flex-wrap justify-between items-center p-2 gap-3">
+        
+        <Link href="/">
+      <motion.div
+        className="dark:hidden"
+        initial={{ scale: 0 }}
+        animate={{ rotate: 360, scale: 1 }}
+        
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20
+        }}
+      >
+        <Image
+          src={textLogo}
+          alt="Logo"
+          width={60}
+          height={50}
+          objectFit="cover"
+        />
+      </motion.div>
 
-        <div className="flex pt-2  gap-5">
-          <ul>
-            <Link href="/">
+      <motion.div
+        className="hidden dark:block"
+        initial={{ scale: 0 }}
+        animate={{ rotate: 360, scale: 1 }}
+        
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20
+        }}
+      >
+        <Image
+          src={textLogodark}
+          alt="Logo"
+          width={60}
+          height={50}
+          objectFit="cover"
+        />
+      </motion.div>
+    </Link>
+
+      <div className="hidden md:flex gap-5">
+        <ul>
+          <Link href="/">
             <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Home</h1>
-            </Link>
-          </ul>
-          <ul>
-            <Link href="/products">
+          </Link>
+        </ul>
+        <ul>
+          <Link href="/products">
             <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Products</h1>
-            </Link>
-          </ul>
-          <ul>
-            <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Cart</h1>
-          </ul>
-          <ul>
+          </Link>
+        </ul>
+        <ul>
+          <BsCart3 className="hover:text-slate-200 dark:hover:text-slate-700 size-5" />
+        </ul>
+        <ul>
           <AuthWrapper
-          authenticated={
-            <Link href="/products/create">
-            <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Create Product</h1>
-            </Link>
-          }
+            authenticated={
+              <Link href="/products/create">
+                <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Create Product</h1>
+              </Link>
+            }
           />
-          </ul>
-        </div>
-        <div>
-          {/* <Input type="email" placeholder="Search" /> */}
-          <Search/>
-        </div>
-        <AuthWrapper
+        </ul>
+      </div>
+
+      
+      <DropdownMenu>
+        <DropdownMenuTrigger className="md:hidden">
+          <CiMenuBurger className="size-5" />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>Navigation</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          
+          <DropdownMenuItem asChild>
+            <Link href="/">Home</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/products">Products</Link>
+          </DropdownMenuItem>
+
+          <DropdownMenuItem asChild>
+            <Link href="/cart">
+              <div className="flex items-center">
+                <BsCart3 className="mr-2" />
+                Cart
+              </div>
+            </Link>
+          </DropdownMenuItem>
+
+          <DropdownMenuItem asChild>
+          <AuthWrapper
+            authenticated={
+              <Link href="/products/create">
+                <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Create Product</h1>
+              </Link>
+            }
+          />
+          </DropdownMenuItem>
+          
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <Search />
+
+      <AuthWrapper
         authenticated={<LogoutButton />}
         unauthenticated={<Link href="/user/signin"><Button>Sign In</Button></Link>}
       />
-        <ul>
-          <ModeToggle />
-        </ul>
-      </nav>
-    </>
+
+      <ul>
+        <ModeToggle />
+      </ul>
+    </nav>
   );
 }

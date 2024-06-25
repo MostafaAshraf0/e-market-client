@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/carousel";
 import Link from "next/link";
 import Footer from "./Footer";
+import { motion } from "framer-motion"
 
 type Product = {
   _id: string;
@@ -53,22 +54,31 @@ export default function HomePage() {
   return (
     <>
       <div className="flex  justify-center gap-5 p-5">
-        <h1 className="text-center scroll-m-20 text-7xl font-extrabold tracking-tight lg:text-9xl">
+        <motion.h1
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="text-center scroll-m-20 text-7xl font-extrabold tracking-tight lg:text-9xl">
           We Create
           <br />
           digital products
           <br />
-          <span className="scroll-m-20 border-b pb-2 text-5xl font-semibold tracking-tight first:mt-0 lg:text-8xl">
+          <motion.span
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2 }}
+          className="scroll-m-20 border-b pb-2 text-5xl font-semibold tracking-tight first:mt-0 lg:text-8xl">
             that stand out.
-          </span>
+          </motion.span>
           <br />
           <Link href={'/products'}>
-          <span className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 inline-flex scroll-m-20  pb-2 text-xl font-semibold tracking-tight first:mt-0 lg:text-5xl gap-2">What Is New<GoArrowUpRight className="border-b mt-1"/> </span>
+          <span className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 inline-flex scroll-m-20  pb-2 text-xl font-semibold tracking-tight first:mt-0 lg:text-5xl gap-2">What Is New<GoArrowUpRight className="border-b mt-1 animate-bounce animate-infinite animate-ease-in-out"/> </span>
           </Link>
-        </h1>
+        </motion.h1>
       </div>
 
       <div className="flex justify-center">
+        
         <Carousel
           plugins={[plugin.current]}
           className="w-full max-w-xs lg:max-w-lg"
@@ -78,6 +88,7 @@ export default function HomePage() {
           <CarouselContent>
             {products.map((product) => (
               <CarouselItem key={product._id}>
+                <Link href={`/products/${product._id}`} passHref>
                 <div className="p-1">
                   <Card>
                     <CardContent className="relative flex aspect-square items-center justify-center  p-6">
@@ -93,6 +104,7 @@ export default function HomePage() {
                     </CardContent>
                   </Card>
                 </div>
+              </Link>
               </CarouselItem>
             ))}
           </CarouselContent>

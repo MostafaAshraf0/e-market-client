@@ -85,9 +85,9 @@ export default function Singup(){
       <>
       <Navbar />
       <div className="flex justify-center p-5">
-        <Card className="flex justify-center flex-wrap p-2 gap-5">
+        <Card className="flex justify-center flex-wrap p-2 gap-5 ">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 min-w-72">
               <h1>Sign In</h1>
               <FormField
                 control={form.control}

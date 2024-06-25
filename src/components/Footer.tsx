@@ -18,7 +18,7 @@ export default function Footer(){
                 <h1>
                 Follow Us
                 <Link href={'https://www.instagram.com/puzzless.games/?igsh=Mjk4ZzNwZGVjYXY2&utm_source=qr'}>
-                <FaInstagram className="size-10"/>
+                <FaInstagram className="size-10 hover:text-slate-200 dark:hover:text-slate-700"/>
                 </Link>
                 </h1>
             </div>
