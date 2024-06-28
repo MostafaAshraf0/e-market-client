@@ -41,7 +41,7 @@ type Product = {
 
 export default function UpdateProduct({ params }: any) {
   const [product, setProduct] = useState<Product | null>(null);
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema)
   });
   const router = useRouter();
@@ -80,9 +80,10 @@ export default function UpdateProduct({ params }: any) {
       formData.append('price', data.price);
       if (data.image?.[0]) {
         formData.append('image', data.image[0]);
-      } else {
-        formData.append('imageUrl', product.imageUrl);
       }
+      // else {
+      //   formData.append('imageUrl', product.imageUrl);
+      // }
       
       const token = Cookies.get('token');
       const { productId } = params as { productId: string };

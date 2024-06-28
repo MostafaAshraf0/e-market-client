@@ -67,7 +67,7 @@ export default function ProductList() {
 
   return (
     <>
-      <Navbar />
+      <h1>Products List</h1>
       <div className="flex justify-center flex-wrap p-2 gap-5">
         {loading && <p>Loading...</p>}
         {error && <p className="text-red-500">{error}</p>}
@@ -107,7 +107,6 @@ export default function ProductList() {
         itemsPerPage={itemsPerPage}
         onPageChange={handlePageChange}
       />
-      <Footer />
     </>
   );
 };

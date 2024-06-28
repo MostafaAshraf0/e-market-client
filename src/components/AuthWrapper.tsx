@@ -7,11 +7,12 @@ type AuthWrapperProps = {
   authenticated?: React.ReactNode;
   unauthenticated?: React.ReactNode;
   creator?: string;
+  roles?: string[];
 };
 
-const AuthWrapper: React.FC<AuthWrapperProps> = ({ authenticated, unauthenticated, children, creator }) => {
+const AuthWrapper: React.FC<AuthWrapperProps> = ({ authenticated, unauthenticated, children, creator, roles }) => {
   const [isClient, setIsClient] = useState(false);
-  const [authStatus, setAuthStatus] = useState<{ loggedIn: boolean, userId: string | null }>({ loggedIn: false, userId: null });
+  const [authStatus, setAuthStatus] = useState<{ loggedIn: boolean, userId: string | null, role: string | null }>({ loggedIn: false, userId: null, role: null });
 
   useEffect(() => {
     setIsClient(true);
@@ -22,9 +23,13 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ authenticated, unauthenticate
     return null;
   }
 
-  const { loggedIn, userId } = authStatus;
+  const { loggedIn, userId, role  } = authStatus;
 
   if (creator && userId !== creator) {
+    return null;
+  }
+
+  if (roles && (!role || !roles.includes(role))) {
     return null;
   }
 

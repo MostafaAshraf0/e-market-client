@@ -14,6 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Link from 'next/link';
 
 export interface Product {
   _id: string;
@@ -70,6 +71,8 @@ const SearchResults: React.FC = () => {
         {results.length > 0 ? (
           results.map((product) => (
             <Card key={product._id} >
+              <Link href={`/products/${product._id}`}>
+              
               <CardHeader>
                 <Image
                   className="rounded-md"
@@ -82,6 +85,8 @@ const SearchResults: React.FC = () => {
                 <CardTitle>{product.title}</CardTitle>
                 <CardDescription>{product.description}</CardDescription>
               </CardHeader>
+              
+              </Link>
               <CardContent>
                 <p className="text-lg font-semibold">${product.price}</p>
               </CardContent>

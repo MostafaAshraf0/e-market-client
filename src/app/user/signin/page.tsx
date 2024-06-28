@@ -61,7 +61,7 @@ export default function Singup(){
     setIsLoading(true)
     setLoginError(null)
     try {
-      const response = await axios.post("http://localhost:8080/user/login", values)
+      const response = await axios.post(`${process.env.API_URL}/user/login`, values)
       const { token, userId } = response.data
 
       Cookies.set('token', token, { expires: 1 , path: '/' });
@@ -69,8 +69,11 @@ export default function Singup(){
       // localStorage.setItem('token', token)
       // localStorage.setItem('userId', userId)
 
-      const decodedToken: { exp: number } = jwtDecode(token);
+      const decodedToken: { exp: number, role: string } = jwtDecode(token);
       setLogoutTimeout(decodedToken.exp * 1000);
+      Cookies.set('role', decodedToken.role, { expires: 1, path: '/' });
+
+      
 
       router.push('/')
     } catch (error) {

@@ -1,15 +1,13 @@
 "use client";
-import ProductList from '@/components/ProductList';
-import UsersList from '@/components/UsersList';
-import axios from 'axios';
-import { useEffect, useState } from "react";
+
+import AdminNv from '../page';
 
 export default function AdminDashboard(){
     
     return(
         <>
-        <h1>AdminDashboard</h1>
-        <UsersList/>
+        <AdminNv/>
+        <h1>Dashboard</h1>
         </>
     );
 }

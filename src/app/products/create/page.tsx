@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Cookies from 'js-cookie';
+import AdminNv from "../../admin/page";
 
 
 const formSchema = z.object({
@@ -101,7 +102,7 @@ export default function CreateProduct() {
 
   return (
     <>
-      <Navbar />
+      <AdminNv />
       <div className="flex justify-center p-4">
         <Card className="flex justify-center flex-wrap p-2 gap-5">
           <Form {...form}>

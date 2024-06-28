@@ -89,15 +89,17 @@ export default function Navbar() {
         <ul>
           <BsCart3 className="hover:text-slate-200 dark:hover:text-slate-700 size-5" />
         </ul>
-        <ul>
+        {/* <ul>
           <AuthWrapper
             authenticated={
               <Link href="/products/create">
                 <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Create Product</h1>
               </Link>
             }
+          roles={['admin']}
           />
-        </ul>
+          <AuthWrapper/>
+        </ul> */}
       </div>
 
       
@@ -132,7 +134,9 @@ export default function Navbar() {
                 <h1 className="hover:text-slate-200 dark:hover:text-slate-700">Create Product</h1>
               </Link>
             }
+            roles={['admin']}
           />
+          <AuthWrapper/>
           </DropdownMenuItem>
           
         </DropdownMenuContent>

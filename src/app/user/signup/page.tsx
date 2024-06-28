@@ -1,24 +1,23 @@
 "use client"
  
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import {Card} from "@/components/ui/card";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+  FormMessage
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import Navbar from "@/components/ui/Navbar";
-import axios from "axios"
-import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
@@ -35,6 +34,7 @@ const formSchema = z.object({
     //   message: 'Contain at least one special character.',
     // })
     .trim(),
+    role: z.string(),
 })
 
 export default function Singup(){
@@ -47,6 +47,7 @@ export default function Singup(){
       email: "",
       name: "",
       password: "",
+      role: "",
     },
   })
 
@@ -117,6 +118,25 @@ export default function Singup(){
               </div>
             </form>
           </Form>
+
+          {/* <FormField
+        control={form.control}
+        name="role"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Role</FormLabel>
+            <FormControl>
+              <select {...field} className="block w-full p-2 border rounded">
+                <option value="">Select a role</option>
+                <option value="user">User</option>
+                <option value="editor">Editor</option>
+                <option value="admin">Admin</option>
+              </select>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      /> */}
 
           {signupResult && (
             <div className="mt-4">
