@@ -77,7 +77,7 @@ const ProductCard: React.FC = () => {
               
                 <CardHeader>
                   <Image
-                    className="rounded-md"
+                    className="rounded-md max-h-52 object-cover"
                     src={product.imageUrl}
                     alt="Product"
                     layout="fixed"
