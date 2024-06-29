@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import axios from 'axios';
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { GoArrowUpRight } from "react-icons/go";
 import {
@@ -35,7 +35,7 @@ export default function HomePage() {
       try {
         const response = await axios.get<{ products: Product[] }>(`${process.env.NEXT_PUBLIC_API_URL}/products`);
         const productsWithImageUrl = response.data.products.map((product) => {
-          const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}/` + product.imageUrl;
+          const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}/` + product.imageUrl.replace("src/", "");
           console.log("Image URL:", imageUrl);
           return {
             ...product,
@@ -97,6 +97,7 @@ export default function HomePage() {
                         alt={product.title}
                         className="object-cover w-full h-full rounded-xl"
                         layout="fill"
+                        unoptimized
                       />
                       <span className="absolute rounded-lg bottom-2 left-2 bg-black bg-opacity-50 text-white text-xl font-semibold p-1">
                         {product.title}
