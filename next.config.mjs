@@ -9,7 +9,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'e-market-wcab.onrender.com',
-        pathname: '/src/images/**',
+        pathname: '/images',
       },
     ],
   },
