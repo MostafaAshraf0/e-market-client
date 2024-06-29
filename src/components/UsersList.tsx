@@ -22,7 +22,7 @@ export default function UsersList() {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<{ users: User[] }>('http://localhost:8080/user/list');
+      const response = await axios.get<{ users: User[] }>(`${process.env.NEXT_PUBLIC_API_URL}/user/list`);
       setUsers(response.data.users);
       setLoading(false);
     } catch (error) {

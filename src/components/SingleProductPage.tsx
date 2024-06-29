@@ -23,7 +23,7 @@ export default function SingleProductPage() {
     const fetchProduct = async () => {
       try {
         const response = await axios.get<Product>(
-          `http://localhost:8080/product/${productId}`
+          `${process.env.NEXT_PUBLIC_API_URL}/product/${productId}`
         );
         setProduct(response.data);
       } catch (error) {

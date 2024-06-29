@@ -44,7 +44,7 @@ export function EditUserDialog({ user, onClose, onUserUpdated }: EditUserDialogP
 
     try {
       const response = await axios.post(
-        `http://localhost:8080/user/edit/${user._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/user/edit/${user._id}`,
         { email, name, role },
         {
           headers: {

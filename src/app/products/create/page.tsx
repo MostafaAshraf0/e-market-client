@@ -62,7 +62,7 @@ export default function CreateProduct() {
       formData.append('creator', token || '');
 
       const response = await axios.post<{ message: string }>(
-        "http://localhost:8080/product/create",
+        `${process.env.NEXT_PUBLIC_API_URL}/product/create`,
         formData,
         {
           headers: {

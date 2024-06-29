@@ -41,11 +41,11 @@ export default function ProductList() {
     setError(null);
     try {
       const response = await axios.get<{ products: Product[], totalitems: number }>(
-        "http://localhost:8080/products",
+        `${process.env.NEXT_PUBLIC_API_URL}/products`,
         { params: { page, limit: itemsPerPage } }
       );
       const productsWithImageUrl = response.data.products.map((product) => {
-        const imageUrl = "http://localhost:8080/" + product.imageUrl.replace("src/", "");
+        const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}/` + product.imageUrl.replace("src/", "");
         return { ...product, imageUrl };
       });
       setProducts(productsWithImageUrl);

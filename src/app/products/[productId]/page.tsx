@@ -44,7 +44,7 @@ export default function SingleProduct({ params }: any) {
         }
 
         const response = await axios.get<{ message: string; product: Product }>(
-          `http://localhost:8080/products/${productId}`
+          `${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`
         );
         setProduct(response.data.product);
       } catch (error) {
@@ -59,7 +59,7 @@ export default function SingleProduct({ params }: any) {
     try {
       const { productId } = params as { productId: string };
       const token = Cookies.get('token');
-      await axios.delete(`http://localhost:8080/delete/${productId}`, {
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/delete/${productId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -74,7 +74,7 @@ export default function SingleProduct({ params }: any) {
     return <div>Loading...</div>;
   }
 
-  const imageUrl = "http://localhost:8080/" + product.imageUrl.replace("src/", "");
+  const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}/` + product.imageUrl.replace("src/", "");
 
   return (
     <>

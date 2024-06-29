@@ -45,7 +45,7 @@ const SearchResults: React.FC = () => {
         setLoading(true);
         setError(null);
         try {
-          const response = await axios.get<SearchResponse>(`http://localhost:8080/search`, {
+          const response = await axios.get<SearchResponse>(`${process.env.NEXT_PUBLIC_API_URL}/search`, {
             params: { keyword }
           });
           setResults(response.data.products);
@@ -76,7 +76,7 @@ const SearchResults: React.FC = () => {
               <CardHeader>
                 <Image
                   className="rounded-md"
-                  src={`http://localhost:8080/${product.imageUrl.replace("src/", "")}`}
+                  src={`${process.env.NEXT_PUBLIC_API_URL}/${product.imageUrl.replace("src/", "")}`}
                   alt={product.title}
                   width={250}
                   height={250}

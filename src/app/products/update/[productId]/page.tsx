@@ -89,7 +89,7 @@ export default function UpdateProduct({ params }: any) {
       const { productId } = params as { productId: string };
 
       await axios.put(
-        `http://localhost:8080/update/${productId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/${productId}`,
         formData,
         {
           headers: {
@@ -109,7 +109,7 @@ export default function UpdateProduct({ params }: any) {
     return <div>Loading...</div>;
   }
 
-  const imageUrl = "http://localhost:8080/" + product.imageUrl.replace("src/", "");
+  const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}/` + product.imageUrl.replace("src/", "");
 
   return (
     <>

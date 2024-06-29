@@ -49,7 +49,7 @@ const Search: React.FC = () => {
         setLoading(true);
         setError(null);
         try {
-          const response = await axios.get<SearchResponse>(`http://localhost:8080/search`, {
+          const response = await axios.get<SearchResponse>(`${process.env.NEXT_PUBLIC_API_URL}/search`, {
             params: { keyword }
           });
           setSuggestions(response.data.products);
