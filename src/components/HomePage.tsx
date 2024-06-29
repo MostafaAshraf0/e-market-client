@@ -35,7 +35,7 @@ export default function HomePage() {
       try {
         const response = await axios.get<{ products: Product[] }>(`${process.env.NEXT_PUBLIC_API_URL}/products`);
         const productsWithImageUrl = response.data.products.map((product) => {
-          const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}/` + product.imageUrl.replace("src/", "");
+          const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}/` + product.imageUrl;
           console.log("Image URL:", imageUrl);
           return {
             ...product,
