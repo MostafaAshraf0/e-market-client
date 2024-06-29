@@ -27,6 +27,8 @@ import { CiMenuBurger } from "react-icons/ci";
 
 export default function Navbar() {
   return (
+    <>
+    
     <nav className="flex flex-wrap justify-between items-center p-2 gap-3">
         
         <Link href="/">
@@ -136,7 +138,6 @@ export default function Navbar() {
             }
             roles={['admin']}
           />
-          <AuthWrapper/>
           </DropdownMenuItem>
           
         </DropdownMenuContent>
@@ -153,5 +154,6 @@ export default function Navbar() {
         <ModeToggle />
       </ul>
     </nav>
+    </>
   );
 }
