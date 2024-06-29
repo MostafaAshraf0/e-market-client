@@ -81,6 +81,7 @@ const SearchResults: React.FC = () => {
                   width={250}
                   height={250}
                   objectFit="cover"
+                  unoptimized
                 />
                 <CardTitle>{product.title}</CardTitle>
                 <CardDescription>{product.description}</CardDescription>

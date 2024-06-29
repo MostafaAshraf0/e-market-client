@@ -84,6 +84,7 @@ const ProductCard: React.FC = () => {
                     width={250}
                     height={250}
                     objectFit="cover"
+                    unoptimized
                   />
                   <CardTitle className="max-w-screen-2xl">{product.title}</CardTitle>
                   {/* <CardDescription>{product.description}</CardDescription> */}

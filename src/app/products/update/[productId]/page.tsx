@@ -125,6 +125,7 @@ export default function UpdateProduct({ params }: any) {
               width={250}
               height={250}
               objectFit="cover"
+              unoptimized
             />
             <CardTitle>Update : {product.title}</CardTitle>
             <CardDescription>Update the product details below</CardDescription>

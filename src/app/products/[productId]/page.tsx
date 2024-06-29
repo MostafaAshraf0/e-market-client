@@ -89,6 +89,7 @@ export default function SingleProduct({ params }: any) {
                 height={384}
                 objectFit="cover"
                 loading = 'lazy'
+                unoptimized
               />
     </div>
     <div className="flex justify-center flex-wrap p-2 gap-5 ">

@@ -6,7 +6,13 @@ const nextConfig = {
     reactStrictMode: true,
   images: {
     remotePatterns: [
-      {
+        {
+            protocol: 'http',
+            hostname: 'localhost',
+            port: '4000',
+            pathname: '/images',
+        },
+        {
         protocol: 'https',
         hostname: 'e-market-wcab.onrender.com',
         pathname: '/images',

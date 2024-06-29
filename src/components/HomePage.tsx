@@ -97,6 +97,7 @@ export default function HomePage() {
                         alt={product.title}
                         className="object-cover w-full h-full rounded-xl"
                         layout="fill"
+                        unoptimized
                       />
                       <span className="absolute rounded-lg bottom-2 left-2 bg-black bg-opacity-50 text-white text-xl font-semibold p-1">
                         {product.title}

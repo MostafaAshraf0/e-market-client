@@ -43,7 +43,7 @@ export default function SingleProductPage() {
   return (
     <div>
       <h1>{product.title}</h1>
-      <Image src={product.imageUrl} alt={product.title} />
+      <Image src={product.imageUrl} alt={product.title}  unoptimized/>
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
     </div>
