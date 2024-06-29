@@ -61,7 +61,7 @@ export default function Singup(){
     setIsLoading(true)
     setLoginError(null)
     try {
-      const response = await axios.post(`${process.env.API_URL}/user/login`, values)
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, values)
       const { token, userId } = response.data
 
       Cookies.set('token', token, { expires: 1 , path: '/' });
