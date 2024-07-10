@@ -79,7 +79,12 @@ export default function SingleProduct({ params }: any) {
   return (
     <>
     <Navbar/>
-    <div className="flex justify-center p-5">
+    <div className="p-2">
+              <Button onClick={() => navigation.push('/products')} variant="outline">
+                Go Back to Product List
+              </Button>
+            </div>
+    <div className="flex justify-center flex-wrap p-2 gap-5 ">
               <Image
                 className="rounded-md"
                 src={imageUrl}
@@ -91,9 +96,7 @@ export default function SingleProduct({ params }: any) {
                 loading = 'lazy'
                 unoptimized
               />
-    </div>
-    <div className="flex justify-center flex-wrap p-2 gap-5 ">
-    <Card className="min-w-80 w-1/2">
+    <Card className="lg:min-w-96 md:min-w-full min-w-full">
             <CardHeader>
               <CardTitle>{product.title}</CardTitle>
               <CardDescription>{product.description}</CardDescription>
@@ -123,11 +126,7 @@ export default function SingleProduct({ params }: any) {
             </CardFooter>
     </Card>
     </div>
-            <div className="p-2">
-              <Button onClick={() => navigation.push('/products')} variant="outline">
-                Go Back to Product List
-              </Button>
-            </div>
+            
     <Footer/>
     </>
   );
