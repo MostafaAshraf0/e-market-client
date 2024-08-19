@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import Footer from "@/components/Footer";
 import AuthWrapper from '@/components/AuthWrapper';
+import AddToCart from "@/components/AddToCart";
 
 type Product = {
   _id: string;
@@ -80,7 +81,7 @@ export default function SingleProduct({ params }: any) {
     <>
     <Navbar/>
     <div className="p-2">
-              <Button onClick={() => navigation.push('/products')} variant="outline">
+              <Button onClick={() => navigation.push('/products')} variant="secondary">
                 Go Back to Product List
               </Button>
             </div>
@@ -106,9 +107,7 @@ export default function SingleProduct({ params }: any) {
               <p>$ {product.price}</p>
             </CardContent>
             <CardFooter className="gap-5">
-            <Button variant="outline" className="text-red-500">
-                Add To Cart
-              </Button>
+            <AddToCart productId={params.productId}/>
               <AuthWrapper
               creator={product.creator}
               authenticated={

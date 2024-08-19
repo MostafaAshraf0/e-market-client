@@ -90,7 +90,9 @@ export default function Navbar() {
           </Link>
         </ul>
         <ul>
+          <Link href="/cart">
           <BsCart3 className="hover:text-slate-200 dark:hover:text-slate-700 size-5" />
+          </Link>
         </ul>
       </div>
 

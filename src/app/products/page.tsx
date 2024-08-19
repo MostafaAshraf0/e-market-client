@@ -95,9 +95,9 @@ const ProductCard: React.FC = () => {
               <p>$ {product.price}</p>
             </CardContent>
             <CardFooter>
-              <Button variant="outline" className="text-red-500">
+              {/* <Button variant="outline" className="text-red-500">
                 Add To Cart
-              </Button>
+              </Button> */}
             </CardFooter>
           </Card>
         ))}
